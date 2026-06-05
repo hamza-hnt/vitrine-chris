@@ -1,8 +1,10 @@
 import { Play, ArrowRight } from "lucide-react";
-import { DEMO_VIDEO_URL } from "../lib/constants";
 import { Reveal } from "../components/Reveal";
+import { useDemoVideo } from "../components/DemoVideoContext";
 
 export function FinalCTA() {
+  const { openDemoVideo } = useDemoVideo();
+
   return (
     <section className="relative py-24 md:py-32">
       <div className="container-x">
@@ -39,15 +41,15 @@ export function FinalCTA() {
                 losing control.
               </p>
               <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-                <a
-                  href={DEMO_VIDEO_URL}
-                  target="_blank"
-                  rel="noreferrer noopener"
+                <button
+                  type="button"
+                  aria-haspopup="dialog"
+                  onClick={openDemoVideo}
                   className="btn-primary"
                 >
                   <Play size={13} className="fill-current" />
                   Watch demo
-                </a>
+                </button>
                 <a href="#product" className="btn-ghost">
                   View dashboard concept
                   <ArrowRight size={14} />

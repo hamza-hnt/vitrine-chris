@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { Logo } from "./Logo";
-import { DEMO_VIDEO_URL, NAV_LINKS } from "../lib/constants";
+import { NAV_LINKS } from "../lib/constants";
 import { Play } from "lucide-react";
+import { useDemoVideo } from "./DemoVideoContext";
 
 export function NavBar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { openDemoVideo } = useDemoVideo();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -43,15 +45,15 @@ export function NavBar() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <a
-              href={DEMO_VIDEO_URL}
-              target="_blank"
-              rel="noreferrer noopener"
+            <button
+              type="button"
+              aria-haspopup="dialog"
+              onClick={openDemoVideo}
               className="btn-primary"
             >
               <Play size={13} className="fill-current" />
               Watch demo
-            </a>
+            </button>
             <button
               className="md:hidden btn-ghost !px-3 !py-2"
               aria-label="Toggle navigation"

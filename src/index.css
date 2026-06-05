@@ -193,6 +193,8 @@ body {
     0 0 0 1px rgba(0,0,0,0.4);
   transition: transform 200ms ease, box-shadow 200ms ease;
   white-space: nowrap;
+  cursor: pointer;
+  font-family: inherit;
 }
 .btn-primary:hover {
   transform: translateY(-1px);
@@ -216,6 +218,8 @@ body {
   border: 1px solid var(--line-strong);
   transition: background 200ms ease, border-color 200ms ease;
   white-space: nowrap;
+  cursor: pointer;
+  font-family: inherit;
 }
 .btn-ghost:hover {
   background: rgba(255,255,255,0.06);

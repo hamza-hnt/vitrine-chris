@@ -9,23 +9,26 @@ import { Tech } from "./sections/Tech";
 import { Trust } from "./sections/Trust";
 import { FinalCTA } from "./sections/FinalCTA";
 import { Footer } from "./sections/Footer";
+import { DemoVideoProvider } from "./components/DemoVideoModal";
 
 export default function App() {
   return (
     <div className="noise relative min-h-screen bg-ink-950 text-ink-50">
-      <NavBar />
-      <main className="relative z-10">
-        <Hero />
-        <Problem />
-        <Solution />
-        <DemoFlow />
-        <Capabilities />
-        <DashboardPreview />
-        <Tech />
-        <Trust />
-        <FinalCTA />
-      </main>
-      <Footer />
+      <DemoVideoProvider>
+        <NavBar />
+        <main className="relative z-10">
+          <Hero />
+          <Problem />
+          <Solution />
+          <DemoFlow />
+          <Capabilities />
+          <DashboardPreview />
+          <Tech />
+          <Trust />
+          <FinalCTA />
+        </main>
+        <Footer />
+      </DemoVideoProvider>
     </div>
   );
 }

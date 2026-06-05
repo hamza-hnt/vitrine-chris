@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import { Play, ArrowRight, Sparkles } from "lucide-react";
-import { DEMO_VIDEO_URL } from "../lib/constants";
+import { DEMO_VIDEO_THUMBNAIL_URL } from "../lib/constants";
+import { useDemoVideo } from "../components/DemoVideoContext";
 
 export function Hero() {
+  const { openDemoVideo } = useDemoVideo();
+
   return (
     <section id="top" className="relative pt-32 md:pt-40 pb-24 md:pb-32 overflow-hidden">
       {/* Ambient orbs */}
@@ -71,15 +74,15 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mt-10 flex flex-wrap items-center justify-center gap-3"
           >
-            <a
-              href={DEMO_VIDEO_URL}
-              target="_blank"
-              rel="noreferrer noopener"
+            <button
+              type="button"
+              aria-haspopup="dialog"
+              onClick={openDemoVideo}
               className="btn-primary"
             >
               <Play size={13} className="fill-current" />
               Watch demo
-            </a>
+            </button>
             <a href="#workflow" className="btn-ghost">
               Explore workflow
               <ArrowRight size={14} />
@@ -131,13 +134,15 @@ export function Hero() {
 }
 
 function VideoPlaceholder() {
+  const { openDemoVideo } = useDemoVideo();
+
   return (
-    <a
-      href={DEMO_VIDEO_URL}
-      target="_blank"
-      rel="noreferrer noopener"
-      className="group relative block mx-auto max-w-[1080px]"
-      aria-label="Watch the Chris.AI demo on YouTube"
+    <button
+      type="button"
+      aria-haspopup="dialog"
+      onClick={openDemoVideo}
+      className="group relative mx-auto block w-full max-w-[1080px] cursor-pointer border-0 bg-transparent p-0 text-left text-inherit"
+      aria-label="Watch the Chris.AI demo"
     >
       {/* Outer halo */}
       <div
@@ -172,6 +177,12 @@ function VideoPlaceholder() {
               "radial-gradient(120% 80% at 50% 0%, rgba(99,102,241,0.25), rgba(10,10,18,0.6) 55%, rgba(6,6,12,1) 100%)",
           }}
         >
+          <img
+            src={DEMO_VIDEO_THUMBNAIL_URL}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover opacity-35 saturate-[0.75]"
+            loading="lazy"
+          />
           {/* subtle grid */}
           <div
             className="absolute inset-0 opacity-[0.18]"
@@ -199,10 +210,10 @@ function VideoPlaceholder() {
               </span>
             </div>
             <p className="mt-5 text-[13.5px] tracking-tight text-ink-100">
-              Demo video placeholder
+              Watch the product demo
             </p>
             <p className="mt-1 text-[12px] font-mono text-ink-400">
-              opens YouTube in a new tab
+              opens here without leaving the site
             </p>
           </div>
 
@@ -221,6 +232,6 @@ function VideoPlaceholder() {
           </div>
         </div>
       </div>
-    </a>
+    </button>
   );
 }
